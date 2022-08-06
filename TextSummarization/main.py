@@ -339,7 +339,7 @@ def test(dataloader, gen_dataloader, model, args, tok, gpuid, do_sample=False):
 class Linear(nn.Module):
     def __init__(self):
         super(Linear, self).__init__()
-        self.fc = nn.Linear(512, 1, bias=False)
+        self.fc = nn.Linear(1024, 1, bias=False)
     def forward(self, x):
         x = self.fc(x)
         x=torch.sigmoid(x)
@@ -482,17 +482,18 @@ def run(rank, args):
                         return_dict_in_generate=True
                     )               
             summaries=output["sequences"] 
-            print(summaries)
-            print([tok.decode(g, skip_special_tokens=True, clean_up_tokenization_spaces=False) for g in summaries])       
-            candicate_scores=output["scores"]
+            # print(summaries)
+            # print([tok.decode(g) for g in summaries])       
+            # candicate_scores=output["scores"]
             hiddenstates=output["decoder_hidden_states"]
-            print(len(hiddenstates))
-            hiddenstates=hiddenstates[1][-1]
+            print(len(hiddenstates),len(hiddenstates[0]))
+            hiddenstates=[h[-1] for h in hiddenstates] #4,97,1,1024
+            hiddenstates=hiddenstates.squeeze(2) #4,97,1024
             print(hiddenstates.shape)
-            print(summaries.shape)
+            # print(summaries.shape)
             # heads=hiddenstates[-1]
             values_pred=linear(hiddenstates)
-
+            print("values:",values_pred.shape)
             batch['candidate_ids']=summaries
             dec = [tok.decode(g, skip_special_tokens=True, clean_up_tokenization_spaces=False) for g in summaries]
             candidates=[]
@@ -523,10 +524,11 @@ def run(rank, args):
             ranking_loss,rewards = RankingLoss(similarity, gold_similarity, args.margin, args.gold_margin, args.gold_weight)
             # candidate model loss
             advantages=torch.clamp(rewards.expand_as(values_pred)-values_pred,min=0,max=1)
-            candidate_output,hidden_states=candidate_model(batch["src_input_ids"], batch["candidate_ids"], args.normalize, args.score_mode, args.length_penalty, adding=args.adding,output_hidden_states=True)
+            candidate_output=candidate_model(batch["src_input_ids"], batch["candidate_ids"], args.normalize, args.score_mode, args.length_penalty, adding=args.adding)
+            print(candidate_output.shape,advantages.shape)
             candidate_dist_loss=mle_fn(candidate_output.transpose(1, 2),\
                  torch.gather(advantages, 3, batch['candidate_ids']).squeeze(-1))
-            values_pred=linear(hidden_states[-1][-1])     
+            # values_pred=linear(hidden_states[-1][-1])     
             candidate_value_loss=mle_fn(values_pred,rewards>0.5)
             candidate_loss=candidate_dist_loss+candidate_value_loss
             candidate_loss.backward()

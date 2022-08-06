@@ -24,17 +24,17 @@
 ##pip install tensorflow_hub
 ##pip list
 
-##pip install -r /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/VL-BERT/requirements.txt
+##pip install -r Hateful meme detectionVL-BERT/requirements.txt
 ##pip install scikit-image==0.19
-##python /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data_utils/gen_bbox.py /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/img_clean /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/##data/box_annos.json
+##python Hateful meme detectiondata_utils/gen_bbox.py Hateful meme detectiondata/img_clean Hateful meme detection##data/box_annos.json
 ##pip install transformers==3.4.0
 
-##python /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data_utils/gen_bbox.py /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/img_clean /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/##data/box_annos.json
+##python Hateful meme detectiondata_utils/gen_bbox.py Hateful meme detectiondata/img_clean Hateful meme detection##data/box_annos.json
  
-##python FairFace-master/inference.py detect_race_mp /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/box_annos.json /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/img_clean /scratch/users/##sutd/nirmalen/HatefulMemesChallenge-main/data/face_race_boxes.json --debug False
+##python FairFace-master/inference.py detect_race_mp Hateful meme detectiondata/box_annos.json Hateful meme detectiondata/img_clean /scratch/users/##sutd/nirmalen/HatefulMemesChallenge-main/data/face_race_boxes.json --debug False
 
-##sh /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/VL-BERT/scripts/init.sh
-##sh /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/VL-BERT/scripts/dist_run_single.sh 4 /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/VL-BERT/cls/train_end2end.py "/scratch/users/sutd/nirmalen/##HatefulMemesChallenge-main/VL-BERT/cfgs/cls/base_4x14G_fp32_k8s_v4.yaml" "/scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/VL-BERT/pretrain_model/vl-bert/vl-bert-base-e2e"
+##sh Hateful meme detectionVL-BERT/scripts/init.sh
+##sh Hateful meme detectionVL-BERT/scripts/dist_run_single.sh 4 Hateful meme detectionVL-BERT/cls/train_end2end.py "/scratch/users/sutd/nirmalen/##HatefulMemesChallenge-main/VL-BERT/cfgs/cls/base_4x14G_fp32_k8s_v4.yaml" "Hateful meme detectionVL-BERT/pretrain_model/vl-bert/vl-bert-base-e2e"
 
 
 
@@ -52,5 +52,5 @@ module load singularity/latest
 
 singularity exec /scratch/users/sutd/nirmalen/pytorch-opencv.sif /bin/bash << EOF 
 python /scratch/users/sutd/nirmalen/visual-sentiment-analysis-main/setup.py install
-python /scratch/users/sutd/nirmalen/visual-sentiment-analysis-main/sh_scripts/predict_emojis.sh --model_file "/scratch/users/sutd/nirmalen/Visual Smiley Dataset/model_best.pth.tar" --image_dir "/scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/img_clean" --category_csv "/scratch/users/sutd/nirmalen/Visual Smiley Dataset/categories.csv" --save_dir "/scratch/users/sutd/nirmalen/Visual Smiley Dataset"
+python /scratch/users/sutd/nirmalen/visual-sentiment-analysis-main/sh_scripts/predict_emojis.sh --model_file "/scratch/users/sutd/nirmalen/Visual Smiley Dataset/model_best.pth.tar" --image_dir "Hateful meme detectiondata/img_clean" --category_csv "/scratch/users/sutd/nirmalen/Visual Smiley Dataset/categories.csv" --save_dir "/scratch/users/sutd/nirmalen/Visual Smiley Dataset"
 EOF

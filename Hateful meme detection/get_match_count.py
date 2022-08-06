@@ -57,7 +57,7 @@ CUDA = get_device
 # current_directory = os.getcwd()
 # save_path = os.path.join(os.path.dirname(current_directory), "pretrained_models")
 # os.makedirs(save_path, exist_ok=True)
-model_path = os.path.join("/scratch/users/sutd/nirmalen", 'conceptual_weights.pt')
+model_path = os.path.join("/Hateful meme detection/", 'conceptual_weights.pt')
 
 class MLP(nn.Module):
 
@@ -298,12 +298,12 @@ def match_lists(list1,list2):
     filtered=[]
     return sum([1 if x in list2 else 0 for x in list1])
 
-train_samples = pd.read_json("/scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/train.entity.jsonl",\
+train_samples = pd.read_json("/Hateful meme detection/data/train.entity.jsonl",\
                              lines=True)
-dev_samples = pd.read_json("/scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/dev_all.entity.jsonl",\
+dev_samples = pd.read_json("/Hateful meme detection/data/dev_all.entity.jsonl",\
                              lines=True)
 # split_data = json.loads('/Users/nirmal/Downloads/HatefulMemesChallenge-main/data/split_img_clean_boxes.json')[0]
-with open('/scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/split_img_clean_boxes.json',\
+with open('/Hateful meme detection/data/split_img_clean_boxes.json',\
           encoding='utf-8', errors='ignore') as json_data:
      split_data = json.load(json_data, strict=False)
         
@@ -324,9 +324,9 @@ for i,row in train_samples.iterrows():
 # def count_match(row):    
     print(i,end="\r")
     text_tokens=process_text(row['text'])    
-    img_path="/scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/img_clean/{}.png".format(row['id'])
+    img_path="/Hateful meme detection/data/img_clean/{}.png".format(row['id'])
     if not os.path.isfile(img_path):
-        img_path="/scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/img_clean/0{}.png".format(row['id'])
+        img_path="/Hateful meme detection/data/img_clean/0{}.png".format(row['id'])
     image = io.imread(img_path)    
     for crop in split_data[img_path.split('/')[-1]]:
         img=image[int(crop[0]):int(crop[2]),int(crop[1]):int(crop[3]),:]

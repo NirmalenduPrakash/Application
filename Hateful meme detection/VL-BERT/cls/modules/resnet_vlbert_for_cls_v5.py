@@ -35,7 +35,7 @@ class ResNetVLBERTv5(Module):
 
         self.tokenizer = BertTokenizer.from_pretrained(config.NETWORK.BERT_MODEL_NAME)
 
-        language_pretrained_model_path = language_pretrained_model_path = '/scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/VL-BERT/pretrain_model/vl-bert/bert-base-uncased/pytorch_model.bin'
+        language_pretrained_model_path = language_pretrained_model_path = 'Hateful meme detectionVL-BERT/pretrain_model/vl-bert/bert-base-uncased/pytorch_model.bin'
         # if config.NETWORK.BERT_PRETRAINED != '':
         #     language_pretrained_model_path = '{}-{:04d}.model'.format(config.NETWORK.BERT_PRETRAINED,
         #                                                               config.NETWORK.BERT_PRETRAINED_EPOCH)

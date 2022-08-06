@@ -17,8 +17,8 @@ DATASET:
   ANSWER_VOCAB_FILE: '?'
   LABEL_INDEX_IN_BATCH: -2
   APPEND_INDEX: false
-  DATASET_PATH: '/scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/'
-  ROOT_PATH: '/scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/'
+  DATASET_PATH: 'Hateful meme detectiondata/'
+  ROOT_PATH: 'Hateful meme detectiondata/'
   TRAIN_IMAGE_SET: 'train'
   VAL_IMAGE_SET: 'val'
   TEST_IMAGE_SET: 'test'
@@ -35,7 +35,7 @@ DATASET:
 
 NETWORK:
   # PARTIAL_PRETRAIN: "/pretrain_model/vl-bert/vl-bert-460k.pth"
-  PARTIAL_PRETRAIN: "/scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/VL-BERT/pretrain_model/vl-bert/vl-bert-large-e2e.model"
+  PARTIAL_PRETRAIN: "Hateful meme detectionVL-BERT/pretrain_model/vl-bert/vl-bert-large-e2e.model"
   PARTIAL_PRETRAIN_PREFIX_CHANGES:
   - "vlbert.mlm_head.predictions.transform->final_mlp.0"
   - "module.vlbert.mlm_head.predictions.transform->module.final_mlp.0"
@@ -62,7 +62,7 @@ NETWORK:
   IMAGE_FINAL_DIM: 1024
   IMAGE_SEMANTIC: false
   OUTPUT_CONV5: false
-  BERT_MODEL_NAME: '/scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/VL-BERT/pretrain_model/vl-bert/bert-large-uncased'
+  BERT_MODEL_NAME: 'Hateful meme detectionVL-BERT/pretrain_model/vl-bert/bert-large-uncased'
   BERT_PRETRAINED: ''
   BERT_PRETRAINED_EPOCH: 0
   BERT_FROZEN: false
