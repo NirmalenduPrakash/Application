@@ -1,0 +1,56 @@
+#!/bin/bash
+#PBS -N singularity
+#PBS -l select=1:ncpus=20:ngpus=4
+## Run for 1 hour, modify as required
+#PBS -l walltime=24:00:00
+## Submit to correct queue for DGX access
+#PBS -q dgx
+## Specify project ID
+# Replace $PROJECT with Project ID such as 41000001 or 22270170
+#PBS -P 15001944  
+## Job name
+#PBS -N floorplan
+## Merge standard output and error from PBS script
+#PBS -j oe
+
+##pip install opencv-contrib-python==4.5.5.62
+##pip install mmcv-full==1.6.0
+##pip install fire
+##pip uninstall --yes mmdet
+##pip install mmcv-full==1.1.1
+##pip install dlib
+##pip install loguru
+##pip install tensorflow
+##pip install tensorflow_hub
+##pip list
+
+##pip install -r /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/VL-BERT/requirements.txt
+##pip install scikit-image==0.19
+##python /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data_utils/gen_bbox.py /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/img_clean /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/##data/box_annos.json
+##pip install transformers==3.4.0
+
+##python /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data_utils/gen_bbox.py /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/img_clean /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/##data/box_annos.json
+ 
+##python FairFace-master/inference.py detect_race_mp /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/box_annos.json /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/img_clean /scratch/users/##sutd/nirmalen/HatefulMemesChallenge-main/data/face_race_boxes.json --debug False
+
+##sh /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/VL-BERT/scripts/init.sh
+##sh /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/VL-BERT/scripts/dist_run_single.sh 4 /scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/VL-BERT/cls/train_end2end.py "/scratch/users/sutd/nirmalen/##HatefulMemesChallenge-main/VL-BERT/cfgs/cls/base_4x14G_fp32_k8s_v4.yaml" "/scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/VL-BERT/pretrain_model/vl-bert/vl-bert-base-e2e"
+
+
+
+##sh /scratch/users/sutd/nirmalen/visual-sentiment-analysis-main/sh_scripts/train_model.sh
+
+# Load container environment
+module load singularity/latest
+##/home/projects/41000001/ai/singularity/nvcr.io/nvidia/pytorch:21.02-py3.sif
+##singularity build -f /scratch/users/sutd/nirmalen/pytorch-opencv.sif /home/projects/41000001/ai/##examples/opencv/pytorch/##singularity-pytorch-opencv.def
+
+##eval ranking
+##python /scratch/users/sutd/nirmalen/BRIO/main.py --cuda --gpuid 0 --config cnndm -e --model_pt /scratch/users/sutd/nirmalen/BRIO/model_ranking.bin -r
+
+##python /scratch/users/sutd/nirmalen/BRIO/main.py --cuda --gpuid 0 --config cnndm -l
+
+singularity exec /scratch/users/sutd/nirmalen/pytorch-opencv.sif /bin/bash << EOF 
+python /scratch/users/sutd/nirmalen/visual-sentiment-analysis-main/setup.py install
+python /scratch/users/sutd/nirmalen/visual-sentiment-analysis-main/sh_scripts/predict_emojis.sh --model_file "/scratch/users/sutd/nirmalen/Visual Smiley Dataset/model_best.pth.tar" --image_dir "/scratch/users/sutd/nirmalen/HatefulMemesChallenge-main/data/img_clean" --category_csv "/scratch/users/sutd/nirmalen/Visual Smiley Dataset/categories.csv" --save_dir "/scratch/users/sutd/nirmalen/Visual Smiley Dataset"
+EOF
