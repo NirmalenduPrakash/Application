@@ -10,7 +10,7 @@
 
 4. To train, sh /Hateful meme detection/VL-BERT/scripts/dist_run_single.sh 4 /Hateful meme detection/VL-BERT/cls/train_end2end.py "/Hateful meme detection/VL-BERT/cfgs/cls/base_4x14G_fp32_k8s_v4.yaml" "/Hateful meme detection/VL-BERT/pretrain_model/vl-bert/vl-bert-base-e2e"
 
-5. Alternately, you can download pretrained hatefull model from here-https://sutdapac-my.sharepoint.com/:u:/g/personal/nirmalendu_prakash_sutd_edu_sg/EeLHKmEMeqFCmmKBlJ5QdbkBhQ2o3K7VzLczpMwNp2udnQ?e=qbG5ro
+5. Alternately, you can download pretrained hatefull model from here-[To be updated]
 
 5. To test, python /Hateful meme detection/VL-BERT/cls/test.py --cfg "/Hateful meme detection/VL-BERT/cfgs/cls/base_4x14G_fp32_k8s_v4.yaml" --ckpt /Hateful meme detection/VL-BERT/pretrain_model/vl-bert/vl-bert-base-e2e/base_4x14G_fp32_k8s_v4/train_train/vl-bert_base_res101_cls-0049.model --bs 4 --gpus 0 --result-path [result path] --result-name "[file name for result file]"
 
@@ -20,7 +20,7 @@
 pip install joblib
 pip install nltk
 pip install git+https://github.com/openai/CLIP.git
-Copy conceptual_weights.pt(download from https://sutdapac-my.sharepoint.com/:u:/g/personal/nirmalendu_prakash_sutd_edu_sg/Ec_xajg4MRxOowx86qGg9rwBgBMSHtmRxRQIkQ-8Ij_IUg?e=pCddrQ) in the root directory
+Copy conceptual_weights.pt(download from To be updated) in the root directory
 RUN python -m spacy download en
 RUN python -m nltk.download wordnet
 python /Hateful meme detection/get_match_count.py
